@@ -1,8 +1,9 @@
 import cv2
+from hand_track import track_hand
 
 # opens deafault camera
 
-camera = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)
+camera = cv2.VideoCapture(0)
 
 print("Connected")
 print("Camera Opened: ", camera.isOpened())
@@ -16,6 +17,7 @@ while True:
         print("Failed to access camera")
         break
 
+    frame = track_hand(frame)
 
     #show fram in a window
     cv2.rectangle(frame, (540, 260), (740, 460), (0, 255, 0), 3)
@@ -31,7 +33,6 @@ while True:
 
     cv2.line(frame, (540, 460), (540, 660), (0, 255, 0), 3)
     cv2.line(frame, (740, 460), (740, 660), (0, 255, 0), 3)
-
 
     cv2.imshow("Laptop Camera", frame)
 
